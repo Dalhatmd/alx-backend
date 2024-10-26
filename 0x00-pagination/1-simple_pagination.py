@@ -13,6 +13,7 @@ def index_range(page, page_size):
     index = (start_index, end_index)
     return index
 
+
 class Server:
     """Server class to paginate a database of popular baby names.
     """
@@ -36,7 +37,7 @@ class Server:
         """computes page """
         assert isinstance(page, int) and page > 0
         assert isinstance(page_size, int) and page_size > 0
-        
+
         index = index_range(page, page_size)
         start, end = index
         data = self.dataset()
