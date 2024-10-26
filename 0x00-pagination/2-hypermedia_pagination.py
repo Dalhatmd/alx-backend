@@ -43,7 +43,7 @@ class Server:
         data = self.dataset()
         return data[start:end]
 
-    def get_hyper(self, page: int = 1, page_size: int = 10)-> Dict:
+    def get_hyper(self, page: int = 1, page_size: int = 10)-> dict:
         """ returns hyper media information on page """
         data = self.get_page(page, page_size)
         total_pages = (len(self.dataset()) + page_size - 1) // page_size
