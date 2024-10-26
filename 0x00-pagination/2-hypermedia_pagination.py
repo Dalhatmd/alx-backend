@@ -2,10 +2,10 @@
 """ helper function """
 import csv
 import math
-from typing import List, Dict, Any
+from typing import List, Tuple
 
 
-def index_range(page, page_size):
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """computes index range """
     start_index = (page - 1) * page_size
     end_index = start_index + page_size
