@@ -5,6 +5,7 @@ BaseCaching = __import__('base_caching').BaseCaching
 
 
 class MRUCache(BaseCaching):
+    """ MRU Cache implementation"""
     def __init__(self):
         super().__init__()
         self.cache_data = OrderedDict()
