@@ -1,32 +1,29 @@
-#!/usr/bin/env python3
-""" LRU cache """
-BaseCaching = __import__('base_caching').BaseCaching
+#!/usr/bin/python3
+""" Lru cache implement """
+BaseCaching = __import__("base_caching").BaseCaching
 
 
 class LRUCache(BaseCaching):
-    """ LRU Cache """
-    def __init__(self):
-        """ initialises using an OrderedDict"""
-        super().__init__()
-        self.used_keys = []
+    """Lru cache class"""
 
-    """ LRU cache implementation """
-    def get(self, key):
-        """ gets an item from cache """
-        if key is None or key not in self.cache_data:
-            return
-        self.used_keys.remove(key)
-        self.used_keys.append(key)
-        return self.cache_data[key]
+    def __init__(self):
+        """initialiser"""
+        super().__init__()
+        self.order = []
 
     def put(self, key, item):
-        """ adds an item to cache """
-        if key is None or item is None:
-            return None
+        """adds into the cache"""
+        if key and item:
+            if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
+                removed = self.order.pop(0)
+                self.cache_data.pop(removed)
+                print("DISCARD: {}".format(removed))
+            self.cache_data[key] = item
+            self.order.append(key)
 
-        if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-            least_item = self.used_keys.pop(0)
-            self.cache_data.pop(least_item)
-            print(f"DISCARD {least_item[0]}")
-        self.cache_data[key] = item
-        self.used_keys.append(key)
+    def get(self, key):
+        """gets item from cache"""
+        if key in self.cache_data:
+            self.order.remove(key)
+            self.order.append(key)
+            return self.cache_data.get(key)
