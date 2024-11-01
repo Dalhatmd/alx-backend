@@ -5,6 +5,7 @@ BaseCaching = __import__('base_caching').BaseCaching
 
 
 class LRUCache(BaseCaching):
+    """ LRU Cache """
     def __init__(self):
         """ initialises using an OrderedDict"""
         super().__init__()
