@@ -22,8 +22,7 @@ class MRUCache(BaseCaching):
             return None
         
         self.cache_data[key] = item
-        self.cache_data.move_to_end(key)
 
         if len(self.cache_data) > self.MAX_ITEMS:
-            most_used = self.cache_data.popitem(last=True)
+            most_used = self.cache_data.popitem(last=False)
             print(f"DISCARD: {most_used[0]}")

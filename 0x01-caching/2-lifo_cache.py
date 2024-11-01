@@ -11,7 +11,7 @@ class LIFOCache(BaseCaching):
             return
 
         if len(self.cache_data) + 1 > self.MAX_ITEMS:
-            #+ 1 to check if it would be greater after adding
+            # + 1 to check if it would be greater after adding
             last_item = self.cache_data.popitem()
             print(f"DISCARD: {last_item[0]}")
         self.cache_data[key] = item
