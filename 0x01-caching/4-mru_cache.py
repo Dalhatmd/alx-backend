@@ -7,6 +7,7 @@ BaseCaching = __import__('base_caching').BaseCaching
 class MRUCache(BaseCaching):
     """ MRU Cache implementation"""
     def __init__(self):
+        """initialiser"""
         super().__init__()
         self.cache_data = OrderedDict()
 
@@ -18,6 +19,7 @@ class MRUCache(BaseCaching):
         return self.cache_data[key]
 
     def put(self, key, item):
+        """ put function """
         if key is None or item is None:
             return None
         
