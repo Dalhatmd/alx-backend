@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """ LRU cache """
-from collections import OrderedDict
 BaseCaching = __import__('base_caching').BaseCaching
 
 
@@ -9,17 +8,15 @@ class LRUCache(BaseCaching):
     def __init__(self):
         """ initialises using an OrderedDict"""
         super().__init__()
-        self.cache_data = OrderedDict()
+        self.used_keys = []
 
     """ LRU cache implementation """
     def get(self, key):
         """ gets an item from cache """
         if key is None or key not in self.cache_data:
             return
-
-        # move the last gotten item to the end
-        self.cache_data.move_to_end(key)
-
+        self.used_keys.remove(key)
+        self.used_keys.append(key)
         return self.cache_data[key]
 
     def put(self, key, item):
@@ -28,7 +25,8 @@ class LRUCache(BaseCaching):
             return None
 
         if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
-            least_item = self.cache_data.popitem(last=False)
+            least_item = self.used_keys.pop(0)
+            self.cache_data.pop(least_item)
             print(f"DISCARD {least_item[0]}")
         self.cache_data[key] = item
-        self.cache_data.move_to_end(key)
+        self.used_keys.append(key)
