@@ -5,7 +5,7 @@ from flask.typing import ResponseReturnValue
 
 
 app = Flask(__name__)
-@app.route('/index')
+@app.route('/')
 def home() -> ResponseReturnValue:
     """ returms a simple page """
     return render_template('0-index.html')
