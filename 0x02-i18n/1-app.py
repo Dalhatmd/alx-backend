@@ -2,7 +2,6 @@
 """ basic babbel implementation"""
 from flask import Flask, render_template
 from flask_babel import Babel
-from flask.typing import ResponseReturnValue
 
 
 app = Flask(__name__)
@@ -19,7 +18,7 @@ class Config:
 app.config.from_object(Config)
 
 @app.route('/')
-def home() -> ResponseReturnValue:
+def home():
     """ returms a simple page """
     return render_template('1-index.html')
 
