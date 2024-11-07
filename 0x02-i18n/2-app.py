@@ -2,7 +2,6 @@
 """ basic babbel implementation"""
 from flask import Flask, render_template, request
 from flask_babel import Babel
-from flask.typing import ResponseReturnValue
 app = Flask(__name__)
 babel = Babel(app)
 
@@ -20,7 +19,7 @@ def get_locale():
 
 
 @app.route('/')
-def home() -> ResponseReturnValue:
+def home():
     """ returms a simple page """
     return render_template('2-index.html')
 
