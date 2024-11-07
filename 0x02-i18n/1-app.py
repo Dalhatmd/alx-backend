@@ -17,6 +17,7 @@ class Config:
 
 app.config.from_object(Config)
 
+
 @app.route('/')
 def home():
     """ returms a simple page """
