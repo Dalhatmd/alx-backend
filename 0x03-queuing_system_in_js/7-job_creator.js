@@ -1,4 +1,4 @@
-import kue, { createQueue } from 'kue';
+import { createQueue } from 'kue';
 
 const jobs = [
     {
